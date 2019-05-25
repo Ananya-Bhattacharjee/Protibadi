@@ -50,7 +50,7 @@ public class FullScreenCapture extends JFrame {
             String selectedText =(String)Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor); // it extracts the highlighted text of system clipboard
             System.out.println(selectedText);
 
-            String fileName = "D://Protibadi/FullScreenshot.jpg";
+            String fileName = "FullScreenshot.jpg";
 
             Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit()
                     .getScreenSize());

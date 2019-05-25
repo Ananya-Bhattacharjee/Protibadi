@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Protibadi" options="--add-exports=java.xml.ws/com.sun.xml.internal.ws.api.message=ALL-UNNAMED" />
-    </option>
-  </component>
-</project>

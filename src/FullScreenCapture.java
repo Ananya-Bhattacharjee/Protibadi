@@ -25,50 +25,11 @@ public class FullScreenCapture extends JFrame {
      *
      */
     private static final long serialVersionUID = 1L;
-/*    public static String getUrl() throws IOException, UnsupportedFlavorException, InterruptedException, AWTException {
-        Thread.sleep(3000);//
-        Robot r=new Robot();
-        r.keyPress(KeyEvent.VK_ALT);  to get focus on taskbar
-   r.keyPress(KeyEvent.VK_D);
-        //r.keyRelease(KeyEvent.VK_ALT);
-        r.keyPress(KeyEvent.VK_D);
-        r.keyRelease(KeyEvent.VK_ALT);
-        r.keyRelease(KeyEvent.VK_D);
-        r.keyPress(KeyEvent.VK_CONTROL);  /* to copy it*/
-/*        r.keyPress(KeyEvent.VK_C);
-        r.keyRelease(KeyEvent.VK_CONTROL);
-        r.keyRelease(KeyEvent.VK_C);
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex) {
-        }
-        String selectedText =(String)Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor); // it extracts the highlighted text of system clipboard
-        return selectedText;
-    }
-*/
-    public static void main(String[] args) throws IOException, InterruptedException, UnsupportedFlavorException, AWTException {
-        //Url url = ((WebRequest)RequestCycle.get().getRequest()).getUrl();
-        //String fullUrl = RequestCycle.get().getUrlRenderer().renderFullUrl(url);
-
-        /*System.setProperty("webdriver.gecko.driver",
-                "F:\\Software\\geckodriver.exe");
-
-        WebDriver driver= new FirefoxDriver();
-        driver.get("http://google.com");
-        while(true) {
-            String currentURL = driver.getCurrentUrl();
-            System.out.println(currentURL);
-            if (currentURL.length()>400) break;
-        }*/
+    public static void main(String[] args) throws UnsupportedFlavorException {
 
 
         FullScreenCapture f = new FullScreenCapture();
         try {
-            /*
-             * Let the program wait for 5 seconds to allow you to open the
-             * window whose screenshot has to be captured
-             */
             Thread.sleep(5000);
             Robot robot = new Robot();
 

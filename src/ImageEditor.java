@@ -8,7 +8,6 @@ import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -101,12 +100,12 @@ public class ImageEditor extends Application {
 		fileMenu.getItems().addAll(initFileMenuItems());
 
 		final Menu editMenu = new Menu("Edit");
-		editMenu.getItems().addAll(initEditMenuItems());
+		//editMenu.getItems().addAll(initEditMenuItems());
 
 		final Menu helpMenu  = new Menu("Help");
-		helpMenu.getItems().addAll(initHelpMenuItems());
+		//helpMenu.getItems().addAll(initHelpMenuItems());
 
-		return new ArrayList<Menu>(Arrays.asList(fileMenu, editMenu, helpMenu));
+		return new ArrayList<Menu>(Arrays.asList(fileMenu));
 	}
 
 	/**
@@ -116,12 +115,12 @@ public class ImageEditor extends Application {
 	private List<MenuItem> initFileMenuItems()
 	{
 		//Creates a new image.
-		final MenuItem newImage = new MenuItem("New");
+		/*final MenuItem newImage = new MenuItem("New");
 		newImage.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
 				newImageDialog();
 			}
-		});
+		});*/
 		//Opens an existing image.
 		final MenuItem open = new MenuItem("Open");
 		open.setOnAction(new EventHandler<ActionEvent>() {
@@ -142,8 +141,16 @@ public class ImageEditor extends Application {
 				}
 			}
 		});
+		final MenuItem exit = new MenuItem("Cancel The Whole Process");
+		exit.setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent e) {
+				//openImage();
+				System.exit(0);
+			}
+		});
 
-		return new ArrayList<MenuItem>(Arrays.asList(newImage, open, save));
+
+		return new ArrayList<MenuItem>(Arrays.asList(open, save, exit));
 	}
 
 	/**

@@ -11,7 +11,7 @@ public class IEToolManager implements EventHandler<MouseEvent> {
 	
 	public IEToolManager()
 	{
-		curColor = Color.BLACK;
+		curColor = Color.RED;
 		curTool  = new IEPencil();
 	}
 

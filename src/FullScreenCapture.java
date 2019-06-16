@@ -1,31 +1,23 @@
-import java.awt.AWTException;
-import java.awt.FlowLayout;
-import java.awt.Rectangle;
-import java.awt.Robot;
-import java.awt.Toolkit;
+import com.restfb.BinaryAttachment;
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.Parameter;
+import com.restfb.types.FacebookType;
+import com.restfb.types.Page;
+
+import javax.imageio.ImageIO;
+import javax.net.ssl.HttpsURLConnection;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageInputStream;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.io.File;
 /*www. j  av  a  2 s. c  om*/
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 
 
@@ -40,6 +32,48 @@ public class FullScreenCapture extends JFrame {
      *
      */
     private static final long serialVersionUID = 1L;
+    private static final String USER_AGENT = "Mozilla/5.0";
+
+    private static void sendPOST() throws IOException {
+        String token="EAAFbJIHdvPUBAAbdXttPowZBI6GZBiEdBoptuTB04SvyNopjJhoj8JjEs6jqQiaB1mEMuJXJwrPZAGZCPsfZB5mZAFqwVKahs4N0XFROpEbmqodaAZBDXSHZBrgx51SbwWgqcI1ZCBsz1qJwZBvSLu0XVZBSt5NPBEzxoUiiutQUSNZAemTX5bgX1oWRNoDL2Cq8SCxuVG0xgJkyZAwZDZD";
+        URL obj = new URL("https://graph.facebook.com/trolledabrhk/feed?message=Hello Fans! &access_token=EAAFbJIHdvPUBAGWVp1SclZB5sInpmLFeURyIo6M1yX761EeLMGH0rJJxWHQLEAlaGRS8RQfZCpC12TMMO6VdNYW1j5uPPmpYPDszrGhCP3LtONZBZBQdlfjvYsMwZCCiqmwK9yxZCHaWrU3jMSlC8QY0miSQtSqFWXV7r3yyXcQZCodUK00FOJwTXZBVbPlm8SMZD");
+
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        con.setRequestMethod("POST");
+
+        //con.setRequestProperty("User-Agent", USER_AGENT);
+
+        // For POST only - START
+        con.setDoOutput(true);
+        OutputStream os = con.getOutputStream();
+        //os.write(POST_PARAMS.getBytes());
+        os.flush();
+        os.close();
+        // For POST only - END
+
+        int responseCode = con.getResponseCode();
+        System.out.println("POST Response Code :: " + responseCode);
+
+        if (responseCode == HttpsURLConnection.HTTP_OK) { //success
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                    con.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            // print result
+            System.out.println(response.toString());
+        } else {
+            System.err.println();
+            System.out.println("POST request not worked");
+        }
+    }
+
+
     public static void main(String[] args) throws UnsupportedFlavorException {
 
 
@@ -72,16 +106,26 @@ public class FullScreenCapture extends JFrame {
             BufferedImage screenFullImage = robot.createScreenCapture(screenRect);
             ImageIO.write(screenFullImage, "jpg", new File(fileName));
 
-            f.setLocation(500, 500);
-            JLabel text = new JLabel("A full screenshot saved!");
-            f.add(text);
-            f.setSize(200, 100);
-            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            f.getContentPane().setLayout(new FlowLayout());
-            f.setVisible(true);
+            //f.setLocation(500, 500);
+            //JLabel text = new JLabel("A full screenshot saved!");
+            //f.add(text);
+            //f.setSize(200, 100);
+            //f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //f.getContentPane().setLayout(new FlowLayout());
+            //f.setVisible(true);
             //ImageEditor i=new ImageEditor();
             ImageEditor.main("FullScreenshot.jpg");
             System.out.println(1);
+
+            //String accessToken="";
+            //FacebookClient fbClient=new DefaultFacebookClient(accessToken);
+            //Connection<Gr=fbClient.fetchConnection("me/groups",Group.class);
+            //sendPOST();
+            //System.out.println("GET DONE");
+
+
+
+
 
 
 
@@ -97,6 +141,13 @@ public class FullScreenCapture extends JFrame {
             g2d.setColor(Color.RED);
             g2d.drawRect(0, 0, 100, 100);
             g2d.dispose();*/
+            final FacebookClient fb = new DefaultFacebookClient("EAAFbJIHdvPUBAOyJPensazRimQcnxKz8fM6ZAzqmJ6VkOwFfGFtjkvcwrYo4rl0jEN2OQUh5CyNpRcZBqUQ8sBudKGT3TT4slttgLDDeHfXUOhPYAPRIQsoDOz41eJZCVxKX1PslbGh46470gtrCTsZCIlULKQOhbWhOOnjimssMwUqgZB8F7S1DWNBvSAVPfqhL4BNLYrwZDZD");
+            final Page page = fb.fetchObject("349243719108528", Page.class);
+            //fb.publish("324917484323515/feed", FacebookType.class, Parameter.with("message", "Rest FB test"));
+            fb.publish("349243719108528/photos", FacebookType.class,  BinaryAttachment.with("FullScreenshot.jpg", new FileInputStream(new File("FullScreenshot.jpg"))),Parameter.with("message","www.facebook.com/"+selectedText.substring(36) ));
+
+
+
 
 
         } catch (AWTException | IOException | InterruptedException ex) {

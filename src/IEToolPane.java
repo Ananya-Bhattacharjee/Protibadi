@@ -20,9 +20,9 @@ public class IEToolPane extends GridPane {
 		Button b1 = new Button(" ");
 		Button b2 = new Button(" ");
 		Button b3 = new Button(" ");
-		add(b1, 0, 0);
-		add(b2, 1, 0);
-		add(b3, 0, 1);
+		//add(b1, 0, 0);
+		//add(b2, 1, 0);
+		//add(b3, 0, 1);
 	}
 	
 }
